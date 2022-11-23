@@ -4,7 +4,7 @@ pipeline {
   stage('Dev') {
       steps {
         script {
-          sh 'mvn build'
+           echo 'Stage 1'
         }
       }
     }
