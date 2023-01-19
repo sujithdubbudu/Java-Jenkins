@@ -19,5 +19,15 @@ public class UserService {
         return usersRepository.findAll();
     }
 
+	public Users saveUser(Users user) {
+		// TODO Auto-generated method stub
+		return usersRepository.save(user);
+	}
+
+	public Users findById(String id) {
+		// TODO Auto-generated method stub
+		return usersRepository.findById(id);
+	}
+
 	
 }
