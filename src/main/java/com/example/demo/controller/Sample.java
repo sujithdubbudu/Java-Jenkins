@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,9 @@ public class Sample {
 	
 	@Autowired
 	UserService userService;
+	
+	@Value("${spring.application.owner}")
+	private String ownerName;
 	
 	@GetMapping("/")
 	String Test()
@@ -70,6 +74,11 @@ public class Sample {
 		 
     	
     }
+    
+    @GetMapping("/ownername")
+	public String getOwnerName() {
+		return ownerName;
+	}
     
     
 
