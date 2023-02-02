@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,8 +25,8 @@ public class Sample {
 	UserService userService;
 	
 	
-	 @Value("${spring.application.owner}")
-	 private String ownerName;
+	 //@Value("${spring.application.owner}")
+	 private String ownerName ="suji";
 	 
 	
 	@GetMapping("/")
@@ -79,7 +80,22 @@ public class Sample {
 		return ownerName;
 	}
     
-    
+    @PutMapping("/update")
+  	public Users updateUser(@RequestBody Users user) {
+    	 Users userobj = userService.findById(String.valueOf(user.getId()));
+    	 if(userobj == null) {
+    		 userobj = userService.saveUser(user);
+    	 }
+    	 else
+    	 {
+    		 userobj.setEmail(user.getEmail());
+    		 userobj.setFirstName(user.getFirstName());
+    		 userobj.setLastName(user.getLastName());
+    		 userobj = userService.saveUser(userobj);
+    	 }
+  		return userobj;
+  	}
+      
 
 	
 	

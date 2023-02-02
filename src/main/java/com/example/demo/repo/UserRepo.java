@@ -9,7 +9,7 @@ import com.example.demo.entity.Users;
 @Repository
 public interface UserRepo extends JpaRepository<Users, Integer>{
 	
-	@Query(value = "SELECT * FROM USERS u where u.id=:id ", nativeQuery = true)
+	@Query(value = "SELECT * FROM users u where u.id=:id ", nativeQuery = true)
 	public Users findById(String id);
 
 }
